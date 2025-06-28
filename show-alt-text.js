@@ -6,7 +6,7 @@
   var existingOverlay=document.getElementById('alt-text-overlay-bookmarklet');
   if(existingOverlay)existingOverlay.remove();
   
-  style.innerHTML='img,svg{position:relative !important;}.alt-text-badge{position:absolute;top:-8px;left:-8px;font-size:10px;font-weight:bold;padding:2px 6px;border-radius:3px;z-index:10000;font-family:monospace;color:white;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}.alt-text-display{position:absolute;top:-40px;left:0;right:0;background:rgba(0,0,0,0.8);color:white;padding:4px 8px;font-size:12px;font-family:sans-serif;border-radius:3px;z-index:9999;word-wrap:break-word;max-width:300px;}.alt-missing{outline:3px solid #e74c3c !important;background:rgba(231,76,60,0.1) !important;}.alt-missing .alt-text-badge{background:#e74c3c;}.alt-empty{outline:3px solid #f39c12 !important;background:rgba(243,156,18,0.1) !important;}.alt-empty .alt-text-badge{background:#f39c12;}.alt-present{outline:3px solid #27ae60 !important;background:rgba(39,174,96,0.1) !important;}.alt-present .alt-text-badge{background:#27ae60;}.alt-svg{outline:3px solid #3498db !important;background:rgba(52,152,219,0.1) !important;}.alt-svg .alt-text-badge{background:#3498db;}';
+  style.innerHTML='img,svg{position:relative !important;}.alt-text-badge{position:absolute;top:-8px;left:-8px;font-size:10px;font-weight:bold;padding:2px 6px;border-radius:3px;z-index:10000;font-family:monospace;color:white;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}.alt-text-display{display:block;background:rgba(0,0,0,0.8);color:white;padding:4px 8px;font-size:12px;font-family:sans-serif;border-radius:3px;margin-bottom:4px;word-wrap:break-word;max-width:300px;z-index:9999;}.alt-missing{outline:3px solid #e74c3c !important;background:rgba(231,76,60,0.1) !important;}.alt-missing .alt-text-badge{background:#e74c3c;}.alt-empty{outline:3px solid #f39c12 !important;background:rgba(243,156,18,0.1) !important;}.alt-empty .alt-text-badge{background:#f39c12;}.alt-present{outline:3px solid #27ae60 !important;background:rgba(39,174,96,0.1) !important;}.alt-present .alt-text-badge{background:#27ae60;}.alt-svg{outline:3px solid #3498db !important;background:rgba(52,152,219,0.1) !important;}.alt-svg .alt-text-badge{background:#3498db;}';
   document.head.appendChild(style);
   
   var images=document.querySelectorAll('img');
@@ -36,7 +36,7 @@
       var display=document.createElement('div');
       display.className='alt-text-display';
       display.textContent=altText;
-      img.appendChild(display);
+      img.parentNode.insertBefore(display, img);
     }
     
     img.appendChild(badge);
@@ -68,7 +68,7 @@
       var display=document.createElement('div');
       display.className='alt-text-display';
       display.textContent=altText;
-      svg.appendChild(display);
+      svg.parentNode.insertBefore(display, svg);
     }else{
       badge.textContent='🔵 SVG';
     }
