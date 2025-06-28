@@ -3,32 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>📌 Accessibility Bookmarklets</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 2rem;
-      line-height: 1.6;
-    }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    li {
-      margin: 0.8rem 0;
-    }
-    a.bookmarklet {
-      display: inline-block;
-      padding: 0.3rem 0.7rem;
-      background: #ff6b35;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -42,7 +17,7 @@
       </a>
     </li>
     <li>
-      <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://YOUR_USERNAME.github.io/bookmarklets/highlight-headings.js';document.head.appendChild(s);})();">
+      <a class="bookmarklet" href="javascript:(function(){var style=document.createElement('style');style.id='highlight-headings-bookmarklet';var existing=document.getElementById('highlight-headings-bookmarklet');if(existing)existing.remove();var existingOverlay=document.getElementById('headings-overlay-bookmarklet');if(existingOverlay)existingOverlay.remove();style.innerHTML='h1,h2,h3,h4,h5,h6{position:relative !important;}h1::before,h2::before,h3::before,h4::before,h5::before,h6::before{content:attr(data-heading-level);position:absolute;top:-8px;left:-8px;background:#ff6b35;color:white;font-size:10px;font-weight:bold;padding:2px 6px;border-radius:3px;z-index:10000;font-family:monospace;}h1{outline:2px solid #e74c3c !important;background:rgba(231,76,60,0.1) !important;}h1::before{content:\"H1\";}h2{outline:2px solid #e67e22 !important;background:rgba(230,126,34,0.1) !important;}h2::before{content:\"H2\";}h3{outline:2px solid #f39c12 !important;background:rgba(243,156,18,0.1) !important;}h3::before{content:\"H3\";}h4{outline:2px solid #27ae60 !important;background:rgba(39,174,96,0.1) !important;}h4::before{content:\"H4\";}h5{outline:2px solid #3498db !important;background:rgba(52,152,219,0.1) !important;}h5::before{content:\"H5\";}h6{outline:2px solid #9b59b6 !important;background:rgba(155,89,182,0.1) !important;}h6::before{content:\"H6\";}';document.head.appendChild(style);var overlay=document.createElement('div');overlay.id='headings-overlay-bookmarklet';overlay.style.cssText='position:fixed;top:20px;left:20px;z-index:10001;background:rgba(0,0,0,0.9);color:white;padding:15px;border-radius:8px;font-family:monospace;font-size:12px;max-width:300px;max-height:400px;overflow-y:auto;';var headings=document.querySelectorAll('h1,h2,h3,h4,h5,h6');var content='<div style=\"font-weight:bold;margin-bottom:10px;\">📋 Page Headings (' + headings.length + ')</div>';headings.forEach(function(h,i){var level=h.tagName.toLowerCase();var indent='  '.repeat(parseInt(level.charAt(1))-1);var text=h.textContent.trim().substring(0,50);if(h.textContent.trim().length>50)text+='...';content+='<div style=\"margin:3px 0;color:'+(level==='h1'?'#e74c3c':level==='h2'?'#e67e22':level==='h3'?'#f39c12':level==='h4'?'#27ae60':level==='h5'?'#3498db':'#9b59b6')+'\">'+indent+level.toUpperCase()+': '+text+'</div>';});content+='<div style=\"margin-top:10px;font-size:10px;opacity:0.7;\">Click anywhere to close</div>';overlay.innerHTML=content;overlay.onclick=function(){overlay.remove();};document.body.appendChild(overlay);var notification=document.createElement('div');notification.style.cssText='position:fixed;top:20px;right:20px;z-index:10000;background:#ff6b35;color:white;padding:12px 20px;border-radius:6px;font-family:sans-serif;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.3);';notification.textContent='🔍 Headings highlighted! Found '+headings.length+' headings.';document.body.appendChild(notification);setTimeout(function(){notification.remove();},3000);})();">
         🔍 Highlight Headings
       </a>
     </li>
