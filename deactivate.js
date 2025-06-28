@@ -45,6 +45,11 @@
       badge.remove();
       removedCount++;
     }
+    var display = el.querySelector('.alt-text-display');
+    if (display) {
+      display.remove();
+      removedCount++;
+    }
   });
   
   // Show notification
