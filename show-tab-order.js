@@ -13,17 +13,17 @@
   style.innerHTML='.tab-order-badge{position:absolute;width:24px;height:24px;background:#3498db;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;font-family:monospace;z-index:10000;top:-12px;left:-12px;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3);}.tab-order-element{position:relative !important;outline:2px solid #3498db !important;outline-offset:2px !important;}';
   document.head.appendChild(style);
   
-  // Get all potentially focusable elements
-  var focusableSelectors='a[href],button,input,textarea,select,details,summary,[tabindex],[contenteditable="true"],audio[controls],video[controls],iframe,embed,object,[role="button"],[role="link"],[role="menuitem"],[role="tab"],[role="option"],[role="checkbox"],[role="radio"]';
+  // Get all potentially focusable elements (based on HTML spec and web standards)
+  var focusableSelectors='a[href],area[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),details,summary,iframe,object,audio[controls],video[controls],[tabindex],[contenteditable="true"],[contenteditable=""]';
   var allElements=document.querySelectorAll(focusableSelectors);
   
   // Filter and sort elements by tab order
   var tabbableElements=[];
   
   allElements.forEach(function(el){
-    // Skip hidden elements
+    // Skip visually hidden elements
     var style=window.getComputedStyle(el);
-    if(style.display==='none'||style.visibility==='hidden'||el.hasAttribute('disabled')){
+    if(style.display==='none'||style.visibility==='hidden'){
       return;
     }
     
@@ -32,10 +32,6 @@
     
     // Skip tabindex="-1" (not tabbable)
     if(tabValue===-1)return;
-    
-    // Special handling for certain elements
-    if(el.tagName==='A'&&!el.hasAttribute('href'))return;
-    if(el.hasAttribute('aria-hidden')&&el.getAttribute('aria-hidden')==='true')return;
     
     tabbableElements.push({
       element:el,
