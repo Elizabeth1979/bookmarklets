@@ -28,6 +28,7 @@ When creating or modifying bookmarklets:
 - **focus-indicator.js**: Enhances focus indicators with high-contrast orange outlines and shadows for better keyboard navigation visibility
 - **highlight-headings.js**: Shows page heading structure with color-coded outlines and an overlay listing all headings
 - **show-alt-text.js**: Reveals alternative text for images and SVGs with color-coded indicators (red=missing, yellow=decorative, green=present, blue=SVG)
+- **show-tab-order.js**: Displays numbered badges on focusable elements showing tabbing order, similar to Firefox's accessibility inspector
 - **deactivate.js**: Removes all active bookmarklet elements and styling from the page
 
 ## Testing
